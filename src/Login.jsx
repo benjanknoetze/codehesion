@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from "yup";
-// import axios from "axois";
+import axios from "axios";
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -11,32 +11,46 @@ const schema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 
+
 function Login() {
+
+  const navigate = useNavigate;
 
   return (
     <div className='formContainer'>
       <h2>Login</h2>
       <Formik
         validationSchema={schema}
-        initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => {
-          console.log(values);
-          axios({
+        initialValues={{ email: "prac@codehedsion.co.za", password: "Password1!" }}
+        onSubmit={() => {
+          return axios({
             method: 'POST',
-            url: 'https://edeaf-api-staging.azurewebsites.net/connect/token',
-            data: data,
-            headers: {'Content-Type': 'multipart/form-data'}
+            headers: {
+              Accept: 'application/json',
+              'content-type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
+            },
+            responseType: JSON,
+            url: 'https://figjam-api.onrender.com/oauth/token',
+            data: {
+              "client_id": "oAtRxBTsY2Oh-br4l-ktBgtZTV0ZBRrhiqGHWe5HL1Y",
+              "client_secret": "bnpvnebUmQ25i6irNxHqUphQELoWjzj6xqTWZFb7mLY",
+              "grant_type": "password",
+              "username": "prac@codehesion.co.za",
+              "password": "Password1!"
+            }
           })
             .then(function (res) {
-               console.log(res)
-               alert('Successfully signed up!');  
+              console.log(res)
+              alert('Success!');
+              window.location = '/Home';
             })
             .catch(function (res) {
-               console.log(res)
-          });
+              console.log('error', res);
+            });
         }}
       >
-        
+
         {({
           values,
           errors,
@@ -47,7 +61,7 @@ function Login() {
         }) => (
           <div className="login">
             <div className="form">
-              <form noValidate onSubmit={handleSubmit}>
+              <form noValidate >
                 <input
                   type="email"
                   name="email"
@@ -73,7 +87,7 @@ function Login() {
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
-                <button type="submit">Login</button>
+                <button type='submit' onClick={handleSubmit}>Login</button>
               </form>
             </div>
           </div>
