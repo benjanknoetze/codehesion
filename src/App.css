@@ -1,0 +1,63 @@
+:root {
+  --forest-green: #0ed56b;
+  --sunny-yellow: #FFFB7D;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+  padding: 2rem;
+  text-align: center;
+  background-color: #85FFBD;
+ background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: var(--pip-brown);
+}
+
+.formContainer, .loginForm, .registerForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer {
+  padding: 5rem;
+  background: rgba(255, 255, 255, 0.511);
+  border-radius: 10px;
+  box-shadow: 2px 2px 32px rgba(56, 129, 40, 0.119);
+}
+
+input {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
+button {
+  color: #fff;
+  border: none;
+  background-color: var(--forest-green);
+  font-weight: 700;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.linkBtn {
+  background: none;
+  color: var(--pip-brown);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
